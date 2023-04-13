@@ -1,0 +1,67 @@
+= JSP & Servlet
+
+== ENV
+[%autowidth%header]
+|====
+
+| JAVA | JDK | WAS
+
+| 8
+| 1.8.0_361
+| Tomcat 9.0.73
+
+|====
+
+== Tomcat
+
+=== WEB-INF
+외부에서 요청할수 없는 디렉터리이다. + 
+
+`clsses` 라는 디렉터리에 컴파일된 class 파일을 넣고 약속되어 있는 매핑방식으로 요청해야한다. +
+
+매핑은 `WEB-INF/web.xml` 파일에서 한다.
+
+Servlet Mapping::
+
++
+
+[source,xml]
+.WEB-INF/web.xml
+----
+<servlet>
+    <servlet-name>[class명]</servlet-name>
+    <servlet-class>[패키지명][class명]</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>클래스명</servlet-name>
+    <url-pattern>[url 경로]</url-pattern>
+</servlet-mapping>
+----
+패키지명이 없으니 지금은 class명을 바로적어도된다. 있다면 패키지명까지 전부적어야한다. ex)_com.sbb.mysite ....
+
+
+Context::
+웹상에 어플리케이션을 구분하기 위한 Path 설정
+
++
+
+[source,xml]
+.conf/server.xml
+----
+<Host name="localhost"  appBase="webapps" ...>
+    <Context path="경로별명" docBase="[경로]" privileged="true"/>
+</Host>
+----
+
+*server.xml* 수정후 서버 재시작해야한다.
+
+TIP: 서버를 ON/OFF 할떄는 `bin/startup.bat`, `bin/shutdown.bat` 파일로 사용하자 +
+`bin/startup.bat` 파일을 실행해도 톰캣 서버가 안켜질경우 `server.xml` 수정시 에러가 있는 경우이다. +
+보통 이런 작업은 서버를 껏다 켜야하기때문에 여기서 작업안하고 어플리케이션 단에서 한다.
+
+
+
+== Servlet
+
+. JAVA_HOME 설정
+
