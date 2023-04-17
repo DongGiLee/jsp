@@ -15,8 +15,7 @@
 == Tomcat
 
 === WEB-INF
-외부에서 요청할수 없는 디렉터리이다. + 
-
+외부에서 요청할수 없는 디렉터리이다. +
 `clsses` 라는 디렉터리에 컴파일된 class 파일을 넣고 약속되어 있는 매핑방식으로 요청해야한다. +
 
 매핑은 `WEB-INF/web.xml` 파일에서 한다.
@@ -29,15 +28,31 @@ Servlet Mapping::
 .WEB-INF/web.xml
 ----
 <servlet>
-    <servlet-name>[class명]</servlet-name>
+    <servlet-name>별명</servlet-name>
     <servlet-class>[패키지명][class명]</servlet-class>
 </servlet>
 <servlet-mapping>
-    <servlet-name>클래스명</servlet-name>
+    <servlet-name>별명</servlet-name>
     <url-pattern>[url 경로]</url-pattern>
 </servlet-mapping>
 ----
 패키지명이 없으니 지금은 class명을 바로적어도된다. 있다면 패키지명까지 전부적어야한다. ex)_com.sbb.mysite ....
+
+web.xml::
+
++
+
+[source,xml]
+.어노테이션을 사용하기위한 web.xml 설정
+----
+...
+<... metadata-complete="false">
+...
+----
+
++
+
+위코드를 `"true"` 에서 `"false"` 로 바꾸면 현재 `web.xml` 파일에 설정해놓은 서블릿 `매핑외에 끝이다.` 라는것에서 다른곳도 있으니 찾아봐라로 변경이되서 어노테이션을 찾아서 적용할수있다. (서블릿 버전3.x이상에서만)
 
 
 Context::
